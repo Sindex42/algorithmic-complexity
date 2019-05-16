@@ -1,0 +1,23 @@
+{
+  "name": "algorithmic-complexity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Framework.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^24.8.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sindex42/algorithmic-complexity.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sindex42/algorithmic-complexity/issues"
+  },
+  "homepage": "https://github.com/Sindex42/algorithmic-complexity#readme"
+}
