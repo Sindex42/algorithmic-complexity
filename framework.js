@@ -1,11 +1,16 @@
 const createCsvWriter = require('csv-writer').createObjectCsvWriter
-
 const { lastElement } = require('./src/Functions.js')
-const { benchmark, randomArray, printWarmupNr } = require('./src/TimingFunctions')
+const { benchmark, randomArray, printIterationNr, findMedian } = require('./src/TimingFunctions')
+
+const [START, MAX, STEP] = [5000, 100000, 5000]
+const WARMUPS = 100
+const WARMUP_ITERATIONS = 10
+const TEST_FUNCTION = lastElement
+const TEST_ITERATIONS = 100
 
 // CSV file template
 const csvWriter = createCsvWriter({
-  path: 'results.csv',
+  path: 'output.csv',
   header: [
     {id: 'size', title: 'SIZE'},
     {id: 'time', title: 'TIME'}
@@ -13,38 +18,30 @@ const csvWriter = createCsvWriter({
 })
 
 // Create, increment and bench arrays
-const [START, MAX, STEP] = [5000, 100000, 5000]
-
-const benchLoop = (recordBool) => {
+const benchLoop = (recordBool, iterations) => {
   let records = []
 
   for (let i = START; i <= MAX; i += STEP) {
-    let array = randomArray(i)
-    let time = benchmark(lastElement, array)
+    let timings = []
+    if (recordBool) { printIterationNr('Array size', i) }
 
-    if (recordBool) {
-      records.push(
-        {size: i,  time: (time[0], time[1])}
-      )
+    for (let j = 0; j < iterations ;j++) {
+      timings.push(benchmark(TEST_FUNCTION, randomArray(i)))
     }
+    if (recordBool) { records.push({ size: i,  time: findMedian(timings) }) }
   }
-
   return records
 }
 
 // Warmup
-const WARMUPS = 100
-
 for (let i = 0; i < WARMUPS; i++) {
-  benchLoop(false)
-  printWarmupNr(i)
+  benchLoop(false, WARMUP_ITERATIONS)
+  printIterationNr('Warmups', i + 1)
 }
 console.log('\nWarmups complete')
 
-// Benchmark execution
-
-
-// Write to file
+// Benchmark and write to file
 csvWriter
-  .writeRecords(benchLoop(true))
-  .then(() => { console.log('Data written to "results.csv"') })
+  .writeRecords(benchLoop(true, TEST_ITERATIONS))
+  .then(() => { console.log('\nData written to "output.csv"') })
+  .catch(() => { console.log('\nUnable to write data to file') })
