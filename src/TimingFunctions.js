@@ -5,9 +5,9 @@ const printWarmupNr = (n) => {
 }
 
 const benchmark = (func, input) => {
-  let start = process.hrtime()
+  const start = process.hrtime()
   func(input)
-  let timeElapsed = process.hrtime(start)
+  const timeElapsed = process.hrtime(start)
 
   return timeElapsed
 }
@@ -16,4 +16,10 @@ const randomArray = (length, max=length) => {
   return Array(length).fill().map(() => Math.round(Math.random() * max))
 }
 
-module.exports = { benchmark, randomArray, printWarmupNr }
+const findMedian = (array) => {
+  const mid = Math.floor(array.length / 2)
+  let nums = [...array].sort((a, b) => a - b)
+  return array.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2
+}
+
+module.exports = { benchmark, randomArray, printWarmupNr, findMedian }
