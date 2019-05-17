@@ -22,4 +22,9 @@ const findMedian = (array) => {
   return nums[mid]
 }
 
-module.exports = { benchmark, randomArray, printIterationNr, findMedian }
+module.exports = {
+  benchmark,
+  randomArray,
+  printIterationNr,
+  findMedian
+}
