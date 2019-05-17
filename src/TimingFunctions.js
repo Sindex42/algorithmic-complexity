@@ -1,15 +1,15 @@
-const printWarmupNr = (n) => {
+const printIterationNr = (text, n) => {
   process.stdout.clearLine()
   process.stdout.cursorTo(0)
-  process.stdout.write(`Warmups: ${n + 1}`);
+  process.stdout.write(`${text}: ${n}`);
 }
 
 const benchmark = (func, input) => {
-  const start = process.hrtime()
+  const start = process.hrtime.bigint()
   func(input)
-  const timeElapsed = process.hrtime(start)
+  const end = process.hrtime.bigint()
 
-  return timeElapsed
+  return end - start
 }
 
 const randomArray = (length, max=length) => {
@@ -19,7 +19,7 @@ const randomArray = (length, max=length) => {
 const findMedian = (array) => {
   const mid = Math.floor(array.length / 2)
   let nums = [...array].sort((a, b) => a - b)
-  return array.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2
+  return nums[mid]
 }
 
-module.exports = { benchmark, randomArray, printWarmupNr, findMedian }
+module.exports = { benchmark, randomArray, printIterationNr, findMedian }

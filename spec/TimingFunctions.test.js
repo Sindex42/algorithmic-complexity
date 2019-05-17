@@ -8,7 +8,7 @@ describe('#findMedian', () => {
 
   test('finds the median value of an array (even)', () => {
     let array = [0, 50, 2, 10, 12, 30]
-    expect(findMedian(array)).toEqual(11)
+    expect(findMedian(array)).toEqual(12)
   })
 })
 
