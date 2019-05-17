@@ -6,7 +6,7 @@ const benchmark = (func, input) => {
   return timeElapsed
 }
 
-const randomArray = (length, max) => {
+const randomArray = (length, max=length) => {
   return Array(length).fill().map(() => Math.round(Math.random() * max))
 }
 
