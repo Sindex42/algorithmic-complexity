@@ -16,3 +16,14 @@ describe('#shuffleFY', () => {
     expect(f.shuffleFY(array)).toEqual(expect.arrayContaining(original))
   })
 })
+
+describe('#mergeSort', () => {
+  test('returns an array of length 1', () => {
+    expect(f.mergeSort([1])).toEqual([1])
+  })
+
+  test('returns a sorted array', () => {
+    let array = [8, 5, 6, 5, 3]
+    expect(f.mergeSort(array)).toEqual([3, 5, 5, 6, 8])
+  })
+})
