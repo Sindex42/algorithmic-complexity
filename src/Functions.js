@@ -1,4 +1,4 @@
-// shuffle, reverse, find duplicates
+// reverse, find duplicates
 
 const lastElement = (arr) => arr[arr.length - 1]
 
@@ -33,6 +33,7 @@ const mergeSort = (arr) => {
     iR = 0
     result = []
 
+    // until end of either array is reached: push smaller, increment index
     while (iL < sortedLeft.length && iR < sortedRight.length) {
       if (sortedLeft[iL] <= sortedRight[iR]) {
         result.push(sortedLeft[iL])
@@ -43,6 +44,7 @@ const mergeSort = (arr) => {
       }
     }
 
+    // push rest of remaining array to result
     if (iR === sortedRight.length) {
       result.push(sortedLeft.slice(iL))
     } else if (iL === sortedLeft.length) {

@@ -5,11 +5,13 @@ const printIterationNr = (text, n) => {
 }
 
 const benchmark = (func, input) => {
-  const start = process.hrtime.bigint()
-  func(input)
-  const end = process.hrtime.bigint()
+  const NS_PER_SEC = 1e9
 
-  return end - start
+  const start = process.hrtime()
+  func(input)
+  const diff = process.hrtime(start)
+
+  return diff[0] * NS_PER_SEC + diff[1]
 }
 
 const randomArray = (length, max=length) => {
