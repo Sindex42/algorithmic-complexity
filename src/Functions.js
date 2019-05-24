@@ -23,7 +23,6 @@ const mergeSort = (arr) => {
     // breakdown
     left = arr.slice(0, l / 2)
     right = arr.slice(l / 2)
-    console.log('l, r', left, right)
 
     // recursive call
     sortedLeft = mergeSort(left)
@@ -34,28 +33,20 @@ const mergeSort = (arr) => {
     iR = 0
     result = []
 
-    // console.log(iL, iR, sortedLeft.length, sortedRight.length)
-
     while (iL < sortedLeft.length && iR < sortedRight.length) {
       if (sortedLeft[iL] <= sortedRight[iR]) {
-        console.log('left smaller, result before', result)
         result.push(sortedLeft[iL])
         iL++
-        console.log('index, result after', iL, result)
       } else {
-        console.log('right smaller, result before', result)
         result.push(sortedRight[iR])
         iR++
-        console.log('index, result after:', iR, result)
       }
     }
 
-    if (iR = sortedRight.length) {
+    if (iR === sortedRight.length) {
       result.push(sortedLeft.slice(iL))
-      console.log('after push right', result)
-    } else if (iL = sortedLeft.length) {
+    } else if (iL === sortedLeft.length) {
       result.push(sortedRight.slice(iR))
-      console.log('after push left', result)
     }
 
     return result.flat()
