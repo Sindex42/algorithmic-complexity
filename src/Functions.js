@@ -13,6 +13,17 @@ const shuffleFY = (arr) => {
   return arr
 }
 
+const reverse = (arr) => {
+  let i, x, j = 0
+  for (i = arr.length - 1; i >= arr.length / 2; i--) {
+    x = arr[i]
+    arr[i] = arr[j]
+    arr[j] = x
+    j++
+  }
+  return arr
+}
+
 const mergeSort = (arr) => {
   let left, right, sortedLeft, sortedRight, iL, iR, result
   l = arr.length
@@ -59,5 +70,6 @@ const mergeSort = (arr) => {
 module.exports = {
   lastElement,
   shuffleFY,
-  mergeSort
+  mergeSort,
+  reverse
 }

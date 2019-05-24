@@ -35,3 +35,13 @@ describe('#mergeSort', () => {
     expect(f.mergeSort(array)).toEqual([2, 2, 3, 3, 4, 7, 8, 8, 9, 9])
   })
 })
+
+describe('#reverse', () => {
+  test('reverses an array of odd length', () => {
+    expect(f.reverse([2, 1])).toEqual([1, 2])
+  })
+
+  test('reverses an array of even length', () => {
+    expect(f.reverse([3, 2, 1])).toEqual([1, 2, 3])
+  })
+})
