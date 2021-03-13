@@ -1,2 +1,2 @@
-Hello there, test
+Hello, friend
 I have a bad feeling about this
